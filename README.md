@@ -1,5 +1,5 @@
 # 🌍 DateCompass
-
+![Overview](images/image1.png)
 **DateCompass** is a smart web app that uses Reddit community wisdom and OpenAI's language models to recommend unique date spots in any city. Whether you're in Berlin, New York, or Tokyo — discover curated ideas for your next romantic outing.
 
 ---
