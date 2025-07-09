@@ -37,7 +37,7 @@ class RedditAPI:
         self.token_expiry = None
 
     async def get_token(self) -> str:
-        """Get or refresh Reddit API token."""
+        # Get or refresh Reddit API token.
         if self.token and self.token_expiry and datetime.now() < self.token_expiry:
             return self.token
 
@@ -54,7 +54,7 @@ class RedditAPI:
             return self.token
 
     async def search_posts(self, city: str) -> List[Dict]:
-        """Search Reddit for date spots."""
+        # Search Reddit for date spots.
         token = await self.get_token()
         async with httpx.AsyncClient() as client:
             response = await client.get(
@@ -83,7 +83,7 @@ class RedditAPI:
             ]
 
 async def generate_recommendations(posts: List[Dict], city: str) -> List[Dict]:
-    """Generate recommendations using OpenAI."""
+    # Generate recommendations using OpenAI.
     if not posts:
         return []
 
@@ -125,7 +125,7 @@ async def generate_recommendations(posts: List[Dict], city: str) -> List[Dict]:
 
 @app.get("/api/search")
 async def search(query: str = Query(..., min_length=2, max_length=50)) -> Dict:
-    """Search endpoint for date spot recommendations."""
+    # Search endpoint for date spot recommendations.
     logger.info(f"Received search request for query: {query}")
     try:
         reddit_api = RedditAPI()
@@ -142,7 +142,7 @@ async def search(query: str = Query(..., min_length=2, max_length=50)) -> Dict:
 
 @app.get("/api/health")
 async def health_check():
-    """Health check endpoint."""
+    # Health check endpoint.
     return {
         "status": "ok",
         "timestamp": datetime.now().isoformat()
